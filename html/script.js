@@ -36,7 +36,16 @@ const REEL_RADIUS = 209;
 
 var fructe = ["", "Cirese", "Prune", "Lamai", "Portocale", "Struguri", "Pepene", "Septar"];
 
-var audios = [];
+var audios = [
+  "changeBet",
+  "pornestePacanele",
+  "alarma",
+  "winLine",
+  "collect",
+  "winDouble",
+  "seInvarte",
+  "apasaButonul"
+];
 var audioIds = [
   "changeBet",
   "pornestePacanele",
