@@ -16,15 +16,15 @@ body {
   position: absolute;
   float: left;
   font-size: 24px;
-  color: #011627;
+  color: #000000;
   font-weight: 300;
-  top: 54%;
-  left: 0; right: 20%;
+  top: 55%;
+  left: 34%;
 }
 
 #ownedCoins {
-  color: #fff;
-  text-shadow: 1px 1px 1px black;
+  color: rgb(0, 0, 0);
+  text-shadow: 1px 1px 1px rgb(109, 109, 109);
   font-weight: 700;
   font-size: 32px;
 }
@@ -33,10 +33,10 @@ body {
   position: absolute;
   float: left;
   font-size: 24px;
-  color: #011627;
+  color: #000000;
   font-weight: 300;
-  top: 51.2%;
-  left: 0; right: 20%;
+  top: 55%;
+  right: 34%;
 }
 
 #win {
@@ -49,7 +49,8 @@ body {
 }
 
 .cHistory {
-  background: rgba(66, 134, 244, .8); 
+  background: rgba(136, 136, 136, 0.8);
+  color: rgb(0, 0, 0);
   font-size: 20px;
   margin-top: 0;
   padding-top: 10px;
@@ -61,9 +62,13 @@ body {
 }
 
 .win {
-  font-size: 26px;
+  font-size: 18px;
   text-shadow: 1px 1px 1px black;
   color: #FFD700;
+  position: absolute;
+  float: left;
+  top: 51.25%;
+  left: 36.25%;
 }
 
 .dblOrNothing {
@@ -72,13 +77,13 @@ body {
   font-size: 16px;
   text-shadow: 1px 1px 1px rgba(0,0,0,.5);
   color: #fff;
-  top: 46.4%;
-  left: 0; right: 19.8%;
+  top: 49.5%;
+  left: 34.75%;
 }
 
 #ownedBet {
-  color: #fff;
-  text-shadow: 1px 1px 1px black;
+  color: rgb(0, 0, 0);
+  text-shadow: 1px 1px 1px rgb(109, 109, 109);
   font-weight: 700;
   font-size: 32px;
 }
@@ -89,14 +94,14 @@ body {
   height: 260px;
   padding-top: 150px;
   transform-style: preserve-3d;
-  border: 20px solid rgba(66, 134, 244, .8);
+  border: 20px solid rgba(136, 136, 136, 0.8);
   border-radius: 15px;
   /* Ensure that we're in 3D space */
   transform-style: preserve-3d;
 }
 
 .comenzi {
-  background: rgba(66, 134, 244, .8);
+  background: rgba(136, 136, 136, 0.8);
   width: 630px;
   height: 80px;
   padding-top: 30px;
@@ -140,15 +145,62 @@ body {
   text-align: center;
 }
 
-.betUp:hover {
-  background: #F37071;
+.redone:hover {
+  background: #F15152;
 }
 
-.betUp {
+.redone {
   text-shadow: 1px 1px 1px black;
   position: absolute;
-  left: 36%;
-  top: 48%;
+  left: 34%;
+  top: 46%;
+  border: none;
+  color: white;
+  padding: 6px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  background: #8f0a0a;
+  transition: .2s all;
+}
+
+.blackone:hover {
+  background: #292929;
+}
+
+.blackone {
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  position: absolute;
+  left: 38%;
+  top: 46%;
+  border: none;
+  color: white;
+  padding: 6px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  background: #000000;
+  transition: .2s all;
+}
+
+
+.betDown:hover {
+  background: #F15152;
+}
+
+.betDown {
+  text-shadow: 1px 1px 1px black;
+  position: absolute;
+  left: 34%;
+  top: 46%;
   border: none;
   color: white;
   padding: 6px 15px;
@@ -159,19 +211,134 @@ body {
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 8px;
+  background: #8f0a0a;
+  transition: .2s all;
+}
+
+.betUp:hover {
+  background: #02801d;
+}
+
+.betUp {
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  position: absolute;
+  left: 38%;
+  top: 46%;
+  border: none;
+  color: white;
+  padding: 6px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  background: #016316;
+  transition: .2s all;
+}
+
+.betDown10:hover {
   background: #F15152;
+}
+
+.betDown10 {
+  text-shadow: 1px 1px 1px black;
+  position: absolute;
+  left: 34%;
+  top: 49%;
+  border: none;
+  color: white;
+  padding: 6px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  background: #8f0a0a;
+  transition: .2s all;
+}
+
+.betUp10:hover {
+  background: #02801d;
+}
+
+.betUp10 {
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  position: absolute;
+  left: 38%;
+  top: 49%;
+  border: none;
+  color: white;
+  padding: 6px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  background: #016316;
+  transition: .2s all;
+}
+
+.betDown100:hover {
+  background: #F15152;
+}
+
+.betDown100 {
+  text-shadow: 1px 1px 1px black;
+  position: absolute;
+  left: 34%;
+  top: 52%;
+  border: none;
+  color: white;
+  padding: 6px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  background: #8f0a0a;
+  transition: .2s all;
+}
+
+.betUp100:hover {
+  background: #02801d;
+}
+
+.betUp100 {
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  position: absolute;
+  left: 38%;
+  top: 52%;
+  border: none;
+  color: white;
+  padding: 6px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  background: #016316;
   transition: .2s all;
 }
 
 .AllIn:hover {
-  background: #2F404E;
+  background: #5a5a5a;
 }
 
 .AllIn {
   text-shadow: 1px 1px 1px black;
   position: absolute;
-  left: 40%;
-  top: 48%;
+  left: 42%;
+  top: 46%;
   border: none;
   color: white;
   padding: 6px 15px;
@@ -182,7 +349,30 @@ body {
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 8px;
-  background: #011627;
+  background: #000000;
+  transition: .2s all;
+}
+
+.close:hover {
+  background: #df0707;
+}
+
+.close {
+  text-shadow: 1px 1px 1px black;
+  position: absolute;
+  right: 34%;
+  top: 46%;
+  border: none;
+  color: white;
+  padding: 6px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  background: #000000;
   transition: .2s all;
 }
 
@@ -193,14 +383,36 @@ body {
 .go {
   text-shadow: 1px 1px 1px black;
   position: absolute;
-  left: 58%;
-  top: 49%;
+  left: 41.9%;
+  top: 49.25%;
   border: none;
   color: white;
   padding: 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  background: #76BA70;
+  transition: .2s all;
+}
+.collectone:hover {
+  background: #8EC68A;
+}
+
+.collectone {
+  text-shadow: 1px 1px 1px black;
+  position: absolute;
+  left: 41.9%;
+  top: 49.25%;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: none;
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
