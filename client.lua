@@ -68,7 +68,7 @@ AddEventHandler("qb-slots:enterBets", function ()
     if tonumber(bets) ~= nil then
     	TriggerServerEvent('qb-slots:BetsAndMoney', tonumber(bets))
     else
-		QBCore.Functions.Notify('You need to enter numbers (9999 is max bet).', "error")
+		QBCore.Functions.Notify('You need to enter numbers (999 is max bet).', "error")
     end
 end)
 
@@ -96,30 +96,6 @@ end)
 -- THREADS
 -------------------------------------------------------------------------------
 Citizen.CreateThread(function ()
-	SetNuiFocus(false, false)
-	open = false
-	local wTime = 500
-	local x = 1
-	while true do
-		Citizen.Wait(wTime)
-		langaAparat = false
-
-		for i=1, #Config.Slots, 1 do
-			if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), Config.Slots[i].x, Config.Slots[i].y, Config.Slots[i].z, true) < 2  then
-				x = i
-				wTime = 0
-				langaAparat = true
-				if not open then
-					DrawText3Ds(Config.Slots[i].x, Config.Slots[i].y, Config.Slots[i].z - 0.3, 'Press ~g~E~w~ to test your luck.')
-				end
-			elseif GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), Config.Slots[x].x, Config.Slots[x].y, Config.Slots[x].z, true) > 4 then
-				wTime = 500
-			end
-		end
-	end
-end)
-
-Citizen.CreateThread(function ()
 	while true do
 		Citizen.Wait(1)
 		if open then
@@ -129,24 +105,6 @@ Citizen.CreateThread(function ()
 			DisablePlayerFiring(GetPlayerPed(-1), true) -- Disable weapon firing
 			DisableControlAction(0, 142, true) -- MeleeAttackAlternate
 			DisableControlAction(0, 106, true) -- VehicleMouseControlOverride
-		elseif IsControlJustReleased(0, 38) and langaAparat then
-			TriggerEvent('qb-slots:enterBets')
 		end
 	end
 end)
-
-
-function DrawText3Ds(x, y, z, text)
-	SetTextScale(0.35, 0.35)
-    SetTextFont(4)
-    SetTextProportional(1)
-    SetTextColour(255, 255, 255, 215)
-    SetTextEntry("STRING")
-    SetTextCentre(true)
-    AddTextComponentString(text)
-    SetDrawOrigin(x,y,z, 0)
-    DrawText(0.0, 0.0)
-    local factor = (string.len(text)) / 370
-    DrawRect(0.0, 0.0+0.0125, 0.017+ factor, 0.03, 0, 0, 0, 75)
-    ClearDrawOrigin()
-end
