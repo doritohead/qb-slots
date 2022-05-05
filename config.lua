@@ -6,7 +6,7 @@
 Config = {}
 Config.blipsEnabled = false
 
-Config.MaxBetNumbers = 4 -- 4 makes the max buyin 9999, 5 makes the max buyin 99999 etc.
+Config.MaxBetNumbers = 3 -- 4 makes the max buyin 9999, 5 makes the max buyin 99999 etc.
 
 Config.Slots = {
   	{x = 950.12, y = 49.05, z = 72.07},
