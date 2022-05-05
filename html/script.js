@@ -36,20 +36,29 @@ const REEL_RADIUS = 209;
 
 var fructe = ["", "Cirese", "Prune", "Lamai", "Portocale", "Struguri", "Pepene", "Septar"];
 
-var audios = [];
-var audioIds = [
-  "changeBet",
-  "pornestePacanele",
+var audios = [ 
   "alarma",
-  "winLine",
+  "apasaButonul",
+  "changeBet",
   "collect",
-  "winDouble",
+  "pornestePacanele",
   "seInvarte",
-  "apasaButonul"
+  "winDouble",
+  "winLine",
+];
+var audioIds = [
+  "alarma",
+  "apasaButonul",
+  "changeBet",
+  "collect",
+  "pornestePacanele",
+  "seInvarte",
+  "winDouble",
+  "winLine",
 ];
 
 var coins = 0;
-var bet = 50;
+var bet = 1;
 
 var backCoins = coins * 2;
 var backBet = bet * 2;
@@ -138,10 +147,18 @@ function endWithWin(x, sound) {
   $('#win').empty().append(x);
   $('.win').show();
   $('.dblOrNothing').show();
+  $('.blackone').show();
+  $('.redone').show();
+  $('.collectone').show();
 
-  $('.betUp').empty().append("RED");
-  $('.AllIn').empty().append("BLACK");
-  $('.go').empty().append("COLLECT");
+  $('.betUp').hide();
+  $('.betDown').hide();
+  $('.betUp10').hide();
+  $('.betDown10').hide();
+  $('.betUp100').hide();
+  $('.betDown100').hide();
+  $('.AllIn').hide();
+  $('.go').hide();
 
   canDouble = x;
 
@@ -159,10 +176,18 @@ function looseDouble() {
   dubleDate = 0;
   $('.win').hide();
   $('.dblOrNothing').hide();
+  $('.blackone').hide();
+  $('.redone').hide();
+  $('.collectone').hide();
 
-  $('.betUp').empty().append("+BET");
-  $('.AllIn').empty().append("ALL IN");
-  $('.go').empty().append("ROLL");
+  $('.betUp').show();
+  $('.betDown').show();
+  $('.betUp10').show();
+  $('.betDown10').show();
+  $('.betUp100').show();
+  $('.betDown100').show();
+  $('.AllIn').show();
+  $('.go').show();
 }
 
 function voteColor(x, color) {
@@ -313,10 +338,6 @@ function pressROLL() {
       } else if(bet != coins && bet != 50) {
         setBet(coins);
       }
-    } else {
-      setTimeout(insertCoin, 200, canDouble);
-      playAudio("collect");
-      looseDouble();
     }
   }
   //else { // SKIP // Putin Buguita ( retul e sters )
@@ -335,21 +356,52 @@ function pressROLL() {
   //  }
   //}
 }
-
-function pressBLACK() {
+function pressCOLLECT() {
+  setTimeout(insertCoin, 200, canDouble);
+  playAudio("collect");
+  looseDouble();
+}
+function pressALLIN() {
   if(canDouble == 0) {
     setBet(coins);
-  } else {
-    voteColor(canDouble, 1);
   }
 }
 
 function pressRED() {
   if(canDouble == 0) {
-    setBet(bet + 50);
+    setBet(bet - 1);
   } else {
     voteColor(canDouble, 0);
   }
+}
+function pressGREEN() {
+  if(canDouble == 0) {
+    setBet(bet + 1);
+  }
+  else {
+    voteColor(canDouble, 1);
+  }
+}
+function pressREDONE() {
+  voteColor(canDouble, 0);
+}
+function pressBLACKONE() {
+  voteColor(canDouble, 1);
+}
+function pressCLOSE() {
+  togglePacanele(false, 0);
+}
+function pressRED10() {
+  setBet(bet - 10);
+}
+function pressGREEN10() {
+  setBet(bet + 10);
+}
+function pressRED100() {
+  setBet(bet - 100);
+}
+function pressGREEN100() {
+  setBet(bet + 100);
 }
 
 var allFile;
@@ -457,7 +509,7 @@ $(document).ready(function() {
 
   $('.win').hide();
   $('.dblOrNothing').hide();
-
+  
   $('#ownedCoins').empty().append(coins);
   $('#ownedBet').empty().append(bet);
 
@@ -470,11 +522,11 @@ $(document).ready(function() {
         break;
       case 37: pressRED(); // left-arrow
         break;
-      case 39: pressBLACK(); // right-arrow
+      case 39: pressALLIN(); // right-arrow
         break;
-      case 38: setBet(bet + 50); // creste BET
+      case 38: setBet(bet + 1); // creste BET
         break;
-      case 40: setBet(bet - 50); // scade BET
+      case 40: setBet(bet - 1); // scade BET
         break;
       case 27: togglePacanele(false, 0); // ESC
         break;
@@ -483,15 +535,40 @@ $(document).ready(function() {
     }
   });
 
-  $('.betUp').on('click', function(){ // RED
+  $('.betDown').on('click', function(){ // 
     pressRED();
   })
-
-  $('.AllIn').on('click', function(){ // BLACK
-    pressBLACK();
+  $('.betUp').on('click', function(){ // 
+    pressGREEN();
   })
-
- 	$('.go').on('click',function(){ // COLLECT
+  $('.betDown10').on('click', function(){ // 
+    pressRED10();
+  })
+  $('.betUp10').on('click', function(){ // 
+    pressGREEN10();
+  })
+  $('.betDown100').on('click', function(){ //
+    pressRED100();
+  })
+  $('.betUp100').on('click', function(){ // 
+    pressGREEN100();
+  })
+  $('.AllIn').on('click', function(){ // 
+    pressALLIN();
+  })
+ 	$('.go').on('click',function(){ // ROLL
     pressROLL();
  	})
- });
+   $('.collectone').on('click',function(){ // COLLECT
+    pressCOLLECT();
+ 	})
+   $('.redone').on('click', function(){ // RED
+    pressREDONE();
+  })
+  $('.blackone').on('click', function(){ // BLACK
+    pressBLACKONE();
+  })
+  $('.close').on('click', function(){ // QUIT
+    pressCLOSE();
+  })
+});
