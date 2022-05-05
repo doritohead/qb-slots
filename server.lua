@@ -11,15 +11,19 @@ AddEventHandler("qb-slots:BetsAndMoney", function(bets)
 	local Player = QBCore.Functions.GetPlayer(source)
 	local PlayerData = Player.PlayerData
     if PlayerData then
-        if bets % 50 == 0 and bets >= 50 then
-            if PlayerData.money['cash'] >= bets then
-                Player.Functions.RemoveMoney('cash', bets)
+        if bets % 10 == 0 and bets >= 10 then
+            local chips = Player.Functions.GetItemByName('casino_whitechip')
+            if chips and chips.amount >= bets then
+            --if PlayerData.money['cash'] >= bets then
+                --Player.Functions.RemoveMoney('cash', bets)
+                Player.Functions.RemoveItem('casino_whitechip', bets)
+                TriggerEvent("qb-log:server:CreateLog", "casino", "Slot Machines", "red", " "..GetPlayerName(source) .. ' Put '..bets..' Chips on the slots')
                 TriggerClientEvent("qb-slots:UpdateSlots", src, bets)
             else
-                TriggerClientEvent('QBCore:Notify', src, "You do not have enough money.", "error")
+                TriggerClientEvent('QBCore:Notify', src, "You need more White Chips.", "error")
             end
         else
-			TriggerClientEvent('QBCore:Notify', src, "You have to insert a multiple of 50. ex: 100, 350, 2500.", "error")
+			TriggerClientEvent('QBCore:Notify', src, "You have to insert a multiple of 10. ex: 10, 20, 30 etc...", "error")
         end
 
     end
@@ -33,10 +37,12 @@ AddEventHandler("qb-slots:PayOutRewards", function(source, amount)
     if PlayerData then
         amount = tonumber(amount)
         if amount > 0 then
-            Player.Functions.AddMoney('cash', amount)
-			TriggerClientEvent('QBCore:Notify', src, 'You won $'..amount.. ' not bad at all!', 'success')
-        else
+            Player.Functions.AddItem('casino_whitechip', amount)
+            TriggerEvent("qb-log:server:CreateLog", "casino", "Slot Machines", "green", " "..GetPlayerName(source) .. ' Walked away with '..amount..' Chips from the slots')
+			TriggerClientEvent('QBCore:Notify', src, 'You walked away with £'..amount.. ' in chips', 'success')
+        elseif amount <= 0 then
 			TriggerClientEvent('QBCore:Notify', src, 'Unlucky, maybe next time!', 'error')
+            TriggerEvent("qb-log:server:CreateLog", "casino", "Slot Machines", "red", " "..GetPlayerName(source) .. ' Lost money on the slots')
         end
     end
 end)
